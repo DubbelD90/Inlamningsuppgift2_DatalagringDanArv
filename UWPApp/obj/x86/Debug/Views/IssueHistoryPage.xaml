@@ -77,11 +77,11 @@
         <StackPanel Grid.Column="1" Grid.Row="0" DataContext="{Binding SelectedItem, ElementName=lvActive}">
             <TextBlock Text="Detailed information:" FontSize="30" Margin="30,30,10,10" Foreground="Gray" HorizontalAlignment="Stretch"/>
             <StackPanel Margin="0,0,0,5">
-                <TextBlock Text="Customer:" FontSize="20" Foreground="Black" Margin="5,5"/>
+                <TextBlock Text="Customer:" FontSize="20" Foreground="Black" Margin="5,5" FontStyle="Italic"/>
                 <TextBlock Text="{Binding customer.Name}" FontSize="20" Foreground="Black" Margin="5,5"/>
-                <TextBlock Text="Category:" FontSize="20" Foreground="Black" Margin="5,5"/>
+                <TextBlock Text="Category:" FontSize="20" Foreground="Black" Margin="5,5" FontStyle="Italic"/>
                 <TextBlock Text="{Binding Category}" FontSize="20" Foreground="Black" Margin="5,5"/>
-                <TextBlock Text="Description:" FontSize="24" Foreground="Black" Margin="5,5"/>
+                <TextBlock Text="Description:" FontSize="24" Foreground="Black" Margin="5,5" FontStyle="Italic"/>
                 <TextBlock Text="{Binding Description}" FontSize="30" Foreground="Black"/>
             </StackPanel>
         </StackPanel>
