@@ -1,0 +1,90 @@
+﻿<Page
+    x:Class="UWPApp.Views.IssueHistoryPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPApp.Views"
+    
+    xmlns:models="using:DataAccess.Models"
+    xmlns:data="using:DataAccess.Data"
+    
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="White">
+
+    <Page.Resources>
+        <CollectionViewSource x:ConnectionId='2' x:Name="IssueCollection"/>
+    </Page.Resources>
+
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Background="White" HorizontalAlignment="Stretch">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Active Issues" FontSize="30" Margin="30,30,10,10" Foreground="Gray" HorizontalAlignment="Stretch"/>
+                <ComboBox x:ConnectionId='15' x:Name="cbChangeStatus" PlaceholderText="Change issue status" PlaceholderForeground="White" FontSize="24" Margin="200,30,10,10" Padding="10" Width="300"/>
+                <Button x:ConnectionId='16' x:Name="btnUpdateIssue"                              Margin="30,30,10,10" BorderBrush="Gray" VerticalAlignment="Bottom">
+                    <TextBlock Text="Update Issue" FontSize="24" Foreground="Gray"/>
+                </Button>
+            </StackPanel>
+            
+            <ListView x:ConnectionId='9' x:Name="lvActive" MaxHeight="300">
+                <ListView.ItemTemplate>
+                    <DataTemplate                          >
+                        <StackPanel x:ConnectionId='11'>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                                <TextBlock Text="Titel:" FontSize="24" Foreground="Black" Margin="0,5,0,5"/>
+                                <TextBlock x:ConnectionId='14'                       FontSize="30" Foreground="Black"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <TextBlock Text="Status:" FontSize="20" Foreground="Black"/>
+                                <TextBlock x:ConnectionId='12'                        FontSize="20" Foreground="Black" Margin="5,0,0,0"/>
+                                <TextBlock Text="Created:" FontSize="20" Foreground="Black" Margin="20,0,0,0"/>
+                                <TextBlock x:ConnectionId='13'                         FontSize="20" Foreground="Black" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Background="White">
+            <TextBlock Text="Finished Issues" FontSize="30" Margin="30" Foreground="Gray" HorizontalAlignment="Stretch"/>
+            <ListView x:ConnectionId='3' x:Name="lvClosed" MaxHeight="300">
+                <ListView.ItemTemplate>
+                    <DataTemplate                          >
+                        <StackPanel x:ConnectionId='5'>
+                            <TextBlock x:ConnectionId='6'                       FontSize="30" Foreground="Black"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:ConnectionId='7'                        FontSize="20" Foreground="Black" Margin="0,0,20,0"/>
+                                <TextBlock x:ConnectionId='8'                         FontSize="20" Foreground="Black"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="0" DataContext="{Binding SelectedItem, ElementName=lvActive}">
+            <TextBlock Text="Detailed information:" FontSize="30" Margin="30,30,10,10" Foreground="Gray" HorizontalAlignment="Stretch"/>
+            <StackPanel Margin="0,0,0,5">
+                <TextBlock Text="Customer:" FontSize="20" Foreground="Black" Margin="5,5"/>
+                <TextBlock Text="{Binding customer.Name}" FontSize="20" Foreground="Black" Margin="5,5"/>
+                <TextBlock Text="Category:" FontSize="20" Foreground="Black" Margin="5,5"/>
+                <TextBlock Text="{Binding Category}" FontSize="20" Foreground="Black" Margin="5,5"/>
+                <TextBlock Text="Description:" FontSize="24" Foreground="Black" Margin="5,5"/>
+                <TextBlock Text="{Binding Description}" FontSize="30" Foreground="Black"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
+
